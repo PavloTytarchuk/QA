@@ -2,8 +2,10 @@ package tytarchuk;
 
 import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import tytarchuk.*;
 
 public class AutoriaSearchTest extends ChromeSettings {
     @BeforeTest
@@ -17,7 +19,7 @@ public class AutoriaSearchTest extends ChromeSettings {
         AutoriaStartPage openAndLoginAutoriaPage = new AutoriaStartPage();
         openAndLoginAutoriaPage.openAutoria();
         AutoriaLoginPage autoriaLoginPage = openAndLoginAutoriaPage.enterLoginPage();
-        SearchByCriteriaPage searchByCriteriaPage = autoriaLoginPage.login("380663877198", "159753000");
+        SearchByCriteriaPage searchByCriteriaPage = autoriaLoginPage.login("380997680950", "159753000");
         searchByCriteriaPage.chooseCarByCategory("Любой");
         searchByCriteriaPage.chooseCarByBrand("BMW").chooseByModel("320");
         searchByCriteriaPage.chooseByRegion("Львов");
@@ -29,10 +31,4 @@ public class AutoriaSearchTest extends ChromeSettings {
         Assert.assertTrue(autoriaResultPage.getOldestCar() > 2000 && autoriaResultPage.getOldestCar() < 2016, "Actual oldest car is out of search bounds");
     }
 
-    @Test
-    public void getResultsOfTeam(){
-        Selenide.open("https://fckarpaty.com");
-        FCKarpatyTable table=new FCKarpatyTable();
-        Assert.assertEquals(table.getValueWithHeading("Карпати", "О"),"8","Expected and actual number of points doesn't match");//column name to ENUM
-    }
 }

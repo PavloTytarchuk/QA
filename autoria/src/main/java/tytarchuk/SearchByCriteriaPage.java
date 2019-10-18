@@ -31,13 +31,11 @@ public class SearchByCriteriaPage {
 
     public SearchByCriteriaPage chooseYearFrom(String yearFrom) {
         Selenide.$x(String.format("//select[@id = 'yearFrom']")).selectOption(yearFrom);
-    //    Selenide.$x(String.format("//select[@id = 'yearFrom']/option[text() = '%s']", yearFrom)).click();
         return this;
     }
 
     public SearchByCriteriaPage chooseYearTo(String yearTo) {
         Selenide.$x("//select[@id = 'yearTo']").selectOption(yearTo);
-        //Selenide.$x(String.format("//select[@id = 'yearTo']/option[text() = '%s']", yearTo)).click();
         return this;
     }
 
@@ -53,6 +51,6 @@ public class SearchByCriteriaPage {
 
     public AutoriaResultPage clickSearchButton() {
         Selenide.$x("//button[@type = 'submit']").click();
-        return page(AutoriaResultPage.class);
+        return Selenide.page(AutoriaResultPage.class);
     }
 }

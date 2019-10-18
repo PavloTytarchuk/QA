@@ -15,6 +15,6 @@ public class AutoriaLoginPage {
         Selenide.$x("//button[text()='Войти']").click();
         Selenide.switchTo().defaultContent();
         Selenide.$(By.id("autoRiaLogo")).waitUntil(Condition.exist, 120000).click(); //time to solve CAPTCHA
-        return page(SearchByCriteriaPage.class);
+        return Selenide.page(SearchByCriteriaPage.class);
     }
 }
