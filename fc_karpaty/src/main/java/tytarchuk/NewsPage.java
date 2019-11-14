@@ -20,11 +20,11 @@ public class NewsPage extends Header {
         return this;
     }
 
-    public NewsPage chooseStartDate(String startDate) {
-        SelenideElement dateFrom = Selenide.$x(String.format("//table[@class = 'ui-datepicker-calendar']/tbody/tr/td/a[text()='%s']", startDate));
+    public NewsPage chooseDate(String date) {
+        SelenideElement dateFrom = Selenide.$x(String.format("//table[@class = 'ui-datepicker-calendar']/tbody/tr/td/a[text()='%s']", date));
         if (dateFrom.isDisplayed()) {
             dateFrom.click();
-        } else System.out.println("You've chosen wrong date");
+        } else throw new IllegalArgumentException("Invalid date: "+date);
         return this;
     }
 
@@ -40,14 +40,6 @@ public class NewsPage extends Header {
 
     public NewsPage chooseEndYear(String endYear){
         Selenide.$x("//select[@class = 'ui-datepicker-year']").selectOption(endYear);
-        return this;
-    }
-
-    public NewsPage chooseEndDate(String endDate){
-        SelenideElement dateTo = Selenide.$x(String.format("//table[@class = 'ui-datepicker-calendar']/tbody/tr/td/a[text()='%s']", endDate));
-        if (dateTo.isDisplayed()) {
-            dateTo.click();
-        } else System.out.println("You've chosen wrong date");
         return this;
     }
 

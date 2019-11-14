@@ -1,6 +1,6 @@
 package tytarchuk;
 
-import com.codeborne.selenide.Selenide;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -11,20 +11,21 @@ public class FCKarpatyTest extends ChromeSettings {
     }
 
     @Test
-    public void getResultsOfTeam() {
-        Selenide.open("https://fckarpaty.com");
+    public void verifyResultsOfTeam() {
+        MainPage mainPage = new MainPage();
+        mainPage.openPage();
         FCKarpatyTable table = new FCKarpatyTable();
-        System.out.println(table.getValueByLineNameAndColumnName("Карпати", ColumnNames.POINTS));
+        Assert.assertEquals(table.getValueByLineNameAndColumnName("Карпати", ColumnNames.POINTS),"10","Expected and actual number of points are different");
     }
 
     @Test
-    public void newsPageCheck(){
-        Selenide.open("https://fckarpaty.com");
+    public void verifyNewsPageAndStorePageWorkingCapacity(){
         MainPage mainPage = new MainPage();
-        NewsPage newsPage = mainPage.moveToNewsPage();
-        newsPage.openStartDateDropDown().chooseStartMonthNumber(7).chooseStartYear("2016").chooseStartDate("14");
-        newsPage.openEndDateDropDown().chooseEndMonthNumber(10).chooseEndYear("2018").chooseEndDate("20");
-        StorePage storePage = newsPage.moveToStorePage();
+        mainPage.openPage();
+        NewsPage newsPage = mainPage.openNewsPage();
+        newsPage.openStartDateDropDown().chooseStartMonthNumber(7).chooseStartYear("2016").chooseDate("14");
+        newsPage.openEndDateDropDown().chooseEndMonthNumber(10).chooseEndYear("2018").chooseDate("20");
+        StorePage storePage = newsPage.openStorePage();
         ProductOverviewPage overviewPage = storePage.popularItemsScrollToRight().popularItemsScrollToRight().previewMiddleSizeBag();
         overviewPage.chooseQuantity(2).addToShoppingBag();
     }

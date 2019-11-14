@@ -14,17 +14,12 @@ public class Table {
     }
 
     public List<SelenideElement> getLines() {
-        ElementsCollection lines = table.$$x(".//tr");
-        List<SelenideElement> l1nes = new ArrayList<>();
-        l1nes.addAll(lines);
-        l1nes.remove(0);
-        return l1nes;
+        return table.$$x(".//tr[position()>1]");
     }
 
     public List<ElementsCollection> getLinesWithColumns() {
-        List<SelenideElement> lines = getLines();
         List<ElementsCollection> linesWithColumns = new ArrayList<>();
-        lines.forEach(line -> {
+        getLines().forEach(line -> {
             ElementsCollection lineWithColumns = line.$$x(".//td");
             linesWithColumns.add(lineWithColumns);
         });

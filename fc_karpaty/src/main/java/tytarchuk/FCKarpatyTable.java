@@ -19,7 +19,7 @@ public class FCKarpatyTable extends Table {
 
     public String getValueByLineNameAndColumnName(String teamName, Enum columnName) {
         val pattern = Pattern.compile("(«)(.+)(»)");
-        val columnNumber = 0;
+        int columnNumber = 0;
         int counter = 0;
         Map<String, Integer> numberByTeamName = new LinkedHashMap<>();
         ElementsCollection teamNames = Selenide.$$x("//div[@class='tab current']/table/tbody/tr/td[1]");

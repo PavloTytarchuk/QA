@@ -15,7 +15,7 @@ public class AutoriaSearchTest extends ChromeSettings {
 
 
     @Test
-    public void searchByAllFieldsToFindOldestAndCheapestCar() throws InterruptedException {
+    public void verifyIfFiltersWork() throws InterruptedException {
         AutoriaStartPage openAndLoginAutoriaPage = new AutoriaStartPage();
         openAndLoginAutoriaPage.openAutoria();
         AutoriaLoginPage autoriaLoginPage = openAndLoginAutoriaPage.enterLoginPage();

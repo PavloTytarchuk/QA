@@ -4,13 +4,16 @@ package tytarchuk;
 import com.codeborne.selenide.Selenide;
 
 public class StorePage extends Header {
+
+    private static final String NEXT_PAGE_XPATH_TEMPLATE = "//div[@class = 'fm box_for_gal%s']//a[@class = 'nextPage browse right']";
+
     public StorePage popularItemsScrollToRight(){
-        Selenide.$x("//div[@class = 'fm box_for_gal test']//a[@class = 'nextPage browse right']").click();
+        Selenide.$x(String.format(NEXT_PAGE_XPATH_TEMPLATE, " test")).click();
         return this;
     }
 
     public StorePage latestItemsScrollToRight(){
-        Selenide.$x("//div[@class = 'fm box_for_gal']//a[@class = 'nextPage browse right']").click();
+        Selenide.$x(String.format(NEXT_PAGE_XPATH_TEMPLATE, "")).click();
         return this;
     }
 
@@ -26,6 +29,6 @@ public class StorePage extends Header {
 
     public ProductOverviewPage previewMiddleSizeBag(){
         Selenide.$x("//a[@class = 'product_link' and text() = 'Сумка (середня)']").click();
-        return Selenide.page(ProductOverviewPage.class);
+        return new ProductOverviewPage();
     }
 }
