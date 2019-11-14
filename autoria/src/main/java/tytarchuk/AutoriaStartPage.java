@@ -11,13 +11,13 @@ public class AutoriaStartPage {
     private SelenideElement login = Selenide.$x("//span[text()=\"Вход в кабинет\"]");
 
     public AutoriaStartPage openAutoria() {
-        open("http://auto.ria.com");
+        Selenide.open("http://auto.ria.com");
         return this;
     }
 
     public AutoriaLoginPage enterLoginPage() {
         Selenide.$x("//span[text()=\"Вход в кабинет\"]").click();
-        return page(AutoriaLoginPage.class);
+        return Selenide.page(AutoriaLoginPage.class);
     }
 
 }
